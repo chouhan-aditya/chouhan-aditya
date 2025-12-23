@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSight Video Shield - Deepfake Detection</title>
+  <meta name="description" content="Advanced deepfake video detection technology">
+  <meta name="author" content="DeepSight">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="logo">
+        <span>DeepSight</span>
+        <span class="highlight">Shield</span>
+      </div>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#detect">Detect Video</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="section">
+    <div class="container">
+      <div class="hero">
+        <div class="hero-content">
+          <h1>Deepfake Video Detection</h1>
+          <p>Advanced AI technology to identify manipulated videos with high accuracy</p>
+          <a href="#detect" class="btn btn-primary">Try Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="AI Detection">
+          <div class="hero-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detect Section -->
+  <section id="detect" class="section">
+    <div class="container">
+      <h2>Detect Deepfakes</h2>
+      <p class="section-description">Upload a video file or paste a link to analyze whether it's real or artificially manipulated.</p>
+      
+      <div class="detection-container">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="upload">Upload Video</button>
+          <button class="tab-btn" data-tab="link">Video URL</button>
+        </div>
+
+        <div class="tab-content">
+          <div id="upload-tab" class="tab-pane active">
+            <div id="dropzone">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag & drop your video here or</p>
+              <label for="file-upload" class="btn btn-secondary">Browse Files</label>
+              <input type="file" id="file-upload" accept="video/mp4,video/x-m4v,video/*" hidden>
+              <p class="small">Supports: MP4, AVI, MOV (Max 30 sec)</p>
+            </div>
+          </div>
+          
+          <div id="link-tab" class="tab-pane">
+            <div class="url-input">
+              <input type="text" id="video-url" placeholder="Paste YouTube or video URL here">
+              <p class="small">Enter a direct link to a video file or YouTube video</p>
+            </div>
+          </div>
+        </div>
+
+        <button id="detect-btn" class="btn btn-primary" disabled>Detect Fake</button>
+
+        <div id="loading" class="hidden">
+          <div class="spinner"></div>
+          <p>Analyzing video... This may take a few moments</p>
+        </div>
+
+        <div id="results" class="hidden">
+          <div class="result-header">
+            <h3>Detection Results</h3>
+            <button id="close-results" class="btn-icon"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="result-content">
+            <div id="result-status" class="fake">
+              <span class="result-label">LIKELY FAKE</span>
+              <span class="confidence">92%</span>
+            </div>
+            <div class="confidence-meter">
+              <div class="meter-bar">
+                <div id="confidence-bar" style="width: 92%"></div>
+              </div>
+              <div class="meter-labels">
+                <span>Real</span>
+                <span>Uncertain</span>
+                <span>Fake</span>
+              </div>
+            </div>
+            <div class="result-details">
+              <div class="detail-item">
+                <span class="detail-label">Facial Inconsistencies</span>
+                <span class="detail-value">High</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Audio-Visual Sync</span>
+                <span class="detail-value">Mismatched</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Artifact Detection</span>
+                <span class="detail-value">Present</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About DeepSight Shield</h2>
+      
+      <div class="about-grid">
+        <div class="about-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>What are Deepfakes?</h3>
+          <p>Deepfakes use artificial intelligence to create convincing fake videos where people say or do things they never did, posing serious risks to information integrity.</p>
+        </div>
+        
+        <div class="about-card">
+          <i class="fas fa-brain"></i>
+          <h3>How We Detect Them</h3>
+          <p>Our AI analyzes subtle inconsistencies in facial movements and lighting that humans might miss but machine learning can identify.</p>
+        </div>
+        
+        <div class="about-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>Accuracy Rate</h3>
+          <p>Our detection system achieves over 96% accuracy in identifying manipulated videos across various quality levels and manipulation techniques.</p>
+        </div>
+        
+        <div class="about-card">
+          <i class="fas fa-lock"></i>
+          <h3>Privacy First</h3>
+          <p>Your uploaded videos are analyzed locally in your browser when possible and never stored permanently. Your privacy is our priority.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <p class="section-description">Everything you need to know about deepfake detection and our technology.</p>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What is this tool used for?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>This tool is designed to detect whether a given video is a deepfake or a real video. Users can upload a video file or enter a video link, and the AI model will analyze it to determine its authenticity.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How does the deepfake detection work?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>The system uses a machine learning model trained on real and fake videos. It analyzes video frames and patterns to detect manipulations such as face swapping, or AI-generated content.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What types of videos can I upload?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>You can upload videos in common formats such as MP4, AVI, MOV, and MKV. The tool supports videos with a maximum duration of 30 seconds.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I check a YouTube or other online video?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, if the video is publicly accessible, you can paste its URL into the provided input field, and the tool will analyze it.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How accurate is the deepfake detection?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>The accuracy depends on the model, video quality, and type of deepfake. Our system provides a confidence score to indicate how certain it is about the prediction.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Does this tool store my uploaded videos?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>No, we do not store or save any uploaded videos. The videos are processed in real-time, and no data is retained after analysis.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can deepfake videos be 100% detected?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>No, while our AI model is trained to detect deepfakes, some highly sophisticated deepfakes may still be difficult to identify. However, our system provides a probability score to help users make an informed judgment.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Is this tool free to use?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, this tool is free for basic use. However, advanced features or extended usage may require registration in the future.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Who can use this tool?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Anyone can use this tool, including journalists, content creators, researchers, and the general public, to verify the authenticity of videos.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How can I contribute or improve the model?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>If you are a researcher or developer interested in improving deepfake detection, you can contact us for collaboration opportunities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p class="section-description">Have questions or need assistance with our deepfake detection service? Get in touch.</p>
+      
+      <div class="contact-container">
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your email address">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="How can we help you?"></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+        
+        <div class="contact-info">
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <span>harshnileshnigam2004@gmail.com</span>
+          </div>
+          
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <span>+91 6232874168</span>
+          </div>
+          
+          <div class="social-links">
+            <a href="https://x.com/VermaKhush76525?t=AWMLwPcxEnAvIIpgKEQVKQ&s=09" class="social-link" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/khushi-verma-581526307" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/khushiverma9630" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span>DeepSight</span>
+          <span class="highlight">Shield</span>
+        </div>
+        <p>Advanced deepfake detection technology for a safer digital world.</p>
+        <p class="copyright">© 2025 DeepSight Shield. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  <!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
+  <script src="../static/script.js"></script>
+</body>
+</html>
